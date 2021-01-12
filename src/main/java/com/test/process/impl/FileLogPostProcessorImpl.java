@@ -59,6 +59,8 @@ public class FileLogPostProcessorImpl implements FileLogPostProcessor  {
 	        try {
 	        	List<Event> processed = future.get();
 	        	logger.debug("getting result from a thread...");
+	        	//TODO: create a DAO and move the DB operations to that. JdbcTemplate will be injected on to that DAO
+	        	// so that all DB opertions can be abstracted away in to the DAO
 	        	processed.stream().forEach(e -> {
 	        		this.jdbcTemplate.update( "insert into event (id, state, type, host, timestamp, alert) values(?,?,?,?,?,?)",
 	        				e.getId(), e.getState(), e.getType(), e.getHost(), e.getTimestamp(), e.getAlert());

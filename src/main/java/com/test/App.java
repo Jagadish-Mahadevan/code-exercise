@@ -8,6 +8,16 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.test.config.SpringContextConfiguration;
 import com.test.process.FileLogProcessor;
 
+/**
+ * Similar to an ETL operation.
+ * Here the extraction is done in the FileLogProcessor  
+ * Transformation is done in FileLogPostProcessor/SlowEventFinder
+ * Loading is done in the DAO (TODO)
+ * 
+ * this standalone assumes that the system is vertically scaled up to deal with memory while handling larger files.
+ * also the file is read in one go to minimise the I/O operation  
+ */
+
 public class App 
 {
 	private static final Logger logger = LoggerFactory.getLogger(App.class);
